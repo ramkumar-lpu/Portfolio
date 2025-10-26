@@ -37,7 +37,7 @@ const Navbar = () => {
               src={profileImg}
               alt="Profile"
               title="Profile"
-              className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-primary"
+              className="w-15 h-15 md:w-12 md:h-12 rounded-full object-cover border-2 border-primary"
             />
           </a>
 
@@ -58,7 +58,7 @@ const Navbar = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden z-50 bg-white/5 hover:bg-white/10"
+            className="md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X /> : <Menu />}

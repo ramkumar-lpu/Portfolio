@@ -5,26 +5,24 @@ import profileImg from "@/components/profile.jpg";
 const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Animated Background Elements - hide on small screens to avoid overlap */}
+      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="hidden md:block absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" />
-        <div className="hidden md:block absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center space-y-4 animate-fade-in pt-6 md:pt-0">
-          {/* Profile image (circular) - constrained size, centered on mobile */}
+        <div className="text-center space-y-6 animate-fade-in">
+          {/* Profile image (square) - place public/profile.jpg */}
           <div className="flex justify-center">
-            <div className="rounded-full overflow-hidden shadow-lg ring-2 ring-primary/30 w-[45vw] h-[45vw] max-w-[200px] max-h-[200px]">
-              <img
-                src={profileImg}
-                alt="Ram Kumar"
-                className="w-full h-full object-cover object-center"
-              />
-            </div>
+            <img
+              src={profileImg}
+              alt="Ram Kumar"
+              className="w-60 h-60 object-cover shadow-lg rounded-full"
+            />
           </div>
 
-          <div className="space-y-2 mt-4 md:mt-2">
+          <div className="space-y-2">
             <p className="text-lg md:text-xl text-muted-foreground">Hello, I'm</p>
             <h1 className="text-5xl md:text-7xl font-bold gradient-text">
               Ram Kumar

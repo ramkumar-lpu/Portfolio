@@ -82,9 +82,19 @@ If you want, I can also add a single `dev` script that runs frontend and backend
 
 # Welcome to your Lovable project
 
+## Project info
+
+**URL**: https://lovable.dev/projects/92d406cc-6805-42eb-82be-6e4560a585ff
+
 ## How can I edit this code?
 
 There are several ways of editing your application.
+
+**Use Lovable**
+
+Simply visit the [Lovable Project](https://lovable.dev/projects/92d406cc-6805-42eb-82be-6e4560a585ff) and start prompting.
+
+Changes made via Lovable will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
@@ -96,10 +106,10 @@ Follow these steps:
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
-git clone <https://github.com/ramkumar-lpu/Portfolio>
+git clone <YOUR_GIT_URL>
 
 # Step 2: Navigate to the project directory.
-cd <ramstack-showcase-main>
+cd <YOUR_PROJECT_NAME>
 
 # Step 3: Install the necessary dependencies.
 npm i
@@ -128,3 +138,16 @@ npm run dev
 - React
 - shadcn-ui
 - Tailwind CSS
+
+## How can I deploy this project?
+
+Simply open [Lovable](https://lovable.dev/projects/92d406cc-6805-42eb-82be-6e4560a585ff) and click on Share -> Publish.
+
+## Can I connect a custom domain to my Lovable project?
+Yes, you can!
+
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+>>>>>>> c2c6e5c (ready for vercel)
