@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+# Portfolio
+my personal web
 # Ramstack Showcase — Local setup
 
 This repository includes a Vite + React frontend and a small Node/Express backend used to send contact-form emails via SMTP (nodemailer).
@@ -76,6 +79,7 @@ npm run dev
 - You can test SMTP locally with services like Mailtrap or by using your email provider's SMTP test settings.
 
 If you want, I can also add a single `dev` script that runs frontend and backend concurrently (requires adding `concurrently` or similar). Tell me if you'd like that.
+
 # Welcome to your Lovable project
 
 ## Project info
@@ -129,9 +133,6 @@ npm run dev
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
 ## What technologies are used for this project?
-
-This project is built with:
-
 - Vite
 - TypeScript
 - React
@@ -143,9 +144,10 @@ This project is built with:
 Simply open [Lovable](https://lovable.dev/projects/92d406cc-6805-42eb-82be-6e4560a585ff) and click on Share -> Publish.
 
 ## Can I connect a custom domain to my Lovable project?
-
 Yes, you can!
 
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+>>>>>>> c2c6e5c (ready for vercel)

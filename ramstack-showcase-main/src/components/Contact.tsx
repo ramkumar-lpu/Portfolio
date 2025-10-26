@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Mail, MapPin, Phone, Github, Linkedin } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toast as sonnerToast } from "@/components/ui/sonner";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const contactInfo = [
@@ -43,15 +44,48 @@ const Contact = () => {
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  // EmailJS configuration through Vite env vars:
+  // - VITE_EMAILJS_SERVICE_ID
+  // - VITE_EMAILJS_TEMPLATE_ID
+  // - VITE_EMAILJS_PUBLIC_KEY
+  const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "";
+  const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "";
+  const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "";
 
-  // Formspree endpoint (set VITE_FORMSPREE_ENDPOINT in .env), and backend as a fallback.
-  const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT || "";
-  // Backend endpoint - when running locally the server listens on port 4000 by default.
-  // You can set VITE_BACKEND_URL in your .env to override.
-  const BACKEND_ENDPOINT = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000/api/send";
+  // Initialize EmailJS when public key is available (safe to call in browser)
+  useEffect(() => {
+    if (EMAILJS_PUBLIC_KEY) {
+      try {
+        // emailjs.init is optional if you pass publicKey to send(), but initializing once is fine.
+        // @ts-ignore - the init method exists on the EmailJS client
+        if (typeof emailjs.init === "function") {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          emailjs.init(EMAILJS_PUBLIC_KEY);
+        }
+      } catch (err) {
+        console.warn("Failed to init EmailJS:", err);
+      }
+    }
+    // Dev-only helpful debug: report whether the Vite env vars are present (does not print keys)
+    try {
+      if (import.meta.env.MODE === "development") {
+        // Log presence (true/false) so you can check browser console if Vite exposes the vars
+        // We intentionally do NOT log the secret/public key values themselves.
+        // Open devtools Console and look for "EmailJS config presence" when the page loads.
+        // eslint-disable-next-line no-console
+        console.info("EmailJS config presence:", {
+          serviceIdPresent: !!EMAILJS_SERVICE_ID,
+          templateIdPresent: !!EMAILJS_TEMPLATE_ID,
+          publicKeyPresent: !!EMAILJS_PUBLIC_KEY,
+        });
+      }
+    } catch (err) {
+      // ignore in production or if import.meta.env.MODE is unavailable
+    }
+  }, [EMAILJS_PUBLIC_KEY]);
 
   const sendMail = async () => {
-    // Require a message at minimum
     if (!message) {
       sonnerToast("Please enter a message before sending.");
       return;
@@ -59,7 +93,6 @@ const Contact = () => {
 
     setLoading(true);
 
-    // Helper: open a mailto: fallback
     const openMailtoFallback = () => {
       const subject = encodeURIComponent(`Website contact from ${name || "visitor"}`);
       const body = encodeURIComponent(`Name: ${name || "-"}%0AEmail: ${email || "-"}%0A%0A${message}`);
@@ -68,63 +101,58 @@ const Contact = () => {
     };
 
     try {
-      // 1) Try Formspree if configured
-      if (FORMSPREE_ENDPOINT) {
-        try {
-          const fsRes = await fetch(FORMSPREE_ENDPOINT, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify({ name, email, message }),
-          });
-
-          if (fsRes.ok) {
-            sonnerToast("Message sent via Formspree — thank you!");
-            setName("");
-            setEmail("");
-            setMessage("");
-            return;
-          } else {
-            console.warn("Formspree responded with non-ok status", fsRes.status);
-          }
-        } catch (err) {
-          console.warn("Formspree request failed:", err);
-        }
-      }
-
-      // 2) Try backend endpoint if configured
-      try {
-        const payload = { name, email, message };
-
-        const res = await fetch(BACKEND_ENDPOINT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(payload),
+      // Prefer EmailJS if configured
+      if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY) {
+        // Dev console log that we're attempting EmailJS (no secrets printed)
+        // eslint-disable-next-line no-console
+        console.info("Attempting EmailJS send (envs present)", {
+          serviceIdPresent: !!EMAILJS_SERVICE_ID,
+          templateIdPresent: !!EMAILJS_TEMPLATE_ID,
+          publicKeyPresent: !!EMAILJS_PUBLIC_KEY,
         });
 
-        if (res.ok) {
-          sonnerToast("Message sent — check your inbox.");
+        try {
+          const templateParams = {
+            from_name: name || "Visitor",
+            from_email: email || "",
+            message,
+          };
+
+          const result = await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID,
+            templateParams,
+            EMAILJS_PUBLIC_KEY
+          );
+
+          // Dev: log EmailJS response summary
+          // eslint-disable-next-line no-console
+          console.info("EmailJS send response:", {
+            status: result && (result.status || result.text || "unknown")
+          });
+
+          // EmailJS succeeded
+          sonnerToast.success("Thanks for contacting me — I'll get back to you soon!");
           setName("");
           setEmail("");
           setMessage("");
           return;
-        } else {
-          console.warn("Backend responded with non-ok status", res.status);
+        } catch (err: any) {
+          // Log error details (do not print env keys)
+          // eslint-disable-next-line no-console
+          console.error("EmailJS send failed:", err && (err.text || err.status || err) );
         }
-      } catch (err) {
-        console.warn("Backend request failed:", err);
+      } else {
+        // eslint-disable-next-line no-console
+        console.info("EmailJS env vars missing — will fall back to mailto");
       }
 
-      // 3) Final fallback: open mail client via mailto
+      // If EmailJS isn't configured or fails, fall back to mailto
       sonnerToast("Falling back to opening your email client...");
       openMailtoFallback();
     } catch (e) {
       sonnerToast("Failed to send message. Please try again later.");
+      // eslint-disable-next-line no-console
       console.error(e);
     } finally {
       setLoading(false);
@@ -220,8 +248,9 @@ const Contact = () => {
                   <Button
                     className="w-full bg-primary hover:bg-primary/90"
                     onClick={sendMail}
+                    disabled={loading}
                   >
-                    Send Message
+                    {loading ? "Sending..." : "Send Message"}
                   </Button>
                 </div>
               </div>

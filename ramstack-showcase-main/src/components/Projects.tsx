@@ -2,13 +2,19 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 
+import farmerProjectImg from "@/components/farmerproject.jpg";
+import zenshinImg from "@/components/zenshin.png";
+import operatingImg from "@/components/operating.png";
+import binaryCrudImg from "@/components/binary-crud.png";
+import ongoingImg from "@/components/ongoing.png";
+
 const Projects = () => {
   const projects = [
     {
       title: "E-Commerce Platform",
       description: "Full-stack e-commerce application with payment integration and admin dashboard",
       technologies: ["HTML", "TAILWINDCSS", "JAVASCRIPT", "PHP", "MYSQL"],
-      image: "./src/components/farmerproject.jpg",
+  image: farmerProjectImg,
       codeUrl: "https://github.com/Ram9219/Portal-for-farmers-to-sell-the-produce-at-a-better-rate",
       liveUrl: "https://www.youtube.com/watch?v=Jv1En9n5ueY&t=1s",
     },
@@ -16,7 +22,7 @@ const Projects = () => {
       title: "Mind-Fullness chat bot",
       description: "AI-powered chat bot for mental wellness and mindfulness",
       technologies: ["HTML", "TAILWINDCSS", "JAVASCRIPT"],
-      image: "./src/components/zenshin.png",
+  image: zenshinImg,
       codeUrl: "https://github.com/Ram9219/Zenshin-GPT",
       liveUrl: "https://zenshin-gpt.vercel.app/",
     },
@@ -24,7 +30,7 @@ const Projects = () => {
       title: "Efficient page replacement algorithms",
       description: "A project exploring various page replacement algorithms for operating systems.",
       technologies: ["JavaScript", "HTML", "TailwindCSS", "Chart.js"],
-      image: "./src/components/operating.png",
+  image: operatingImg,
       codeUrl: "https://github.com/Ram9219/OperatingSystem",
       liveUrl: "https://operating-system-chi.vercel.app/",
     },
@@ -32,7 +38,7 @@ const Projects = () => {
       title: "Binary Search Tree CRUD Web Tool",
       description: "A web tool for visualizing and interacting with binary search trees.",
       technologies: ["JavaScript", "HTML", "TAILWINDCSS"],
-      image: "./src/components/binary-crud.png",
+  image: binaryCrudImg,
       codeUrl: "https://github.com/Ram9219/-Binary-Search-Tree-CRUD-Web-Tool",
       liveUrl: "https://binary-search-tree-crud-web-tool.vercel.app/",
     },
@@ -41,7 +47,7 @@ const Projects = () => {
       description:
         "Low-cost automated attendance system for rural schools — teachers can take attendance manually or by capturing a single photo of the entire class.",
       technologies: ["REACT", "FACERECOGNITION", "Flask"],
-      image: "./src/components/ongoing.png",
+  image: ongoingImg,
       codeUrl: "",
       liveUrl: "",
       status: "Ongoing",
@@ -76,7 +82,6 @@ const Projects = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-xl font-semibold">{project.title}</h3>
                   {project.status && (

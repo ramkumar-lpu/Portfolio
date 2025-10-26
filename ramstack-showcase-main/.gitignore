@@ -1,4 +1,16 @@
-# Logs
+node_modules/
+dist/
+.vite/
+.env
+.env.local
+.DS_Store
+npm-debug.log*
+pnpm-lock.yaml
+package-lock.json
+.idea/
+.vscode/
+/.cache/
+.env.*# Logs
 logs
 *.log
 npm-debug.log*

@@ -22,3 +22,6 @@ export function Toaster() {
     </ToastProvider>
   );
 }
+
+// Provide a default export as well to improve compatibility with different import styles
+export default Toaster;

@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import profileImg from "@/components/profile.jpg";
 
 const Hero = () => {
   return (
@@ -15,7 +16,7 @@ const Hero = () => {
           {/* Profile image (square) - place public/profile.jpg */}
           <div className="flex justify-center">
             <img
-              src="./src/components/profile.jpg"
+              src={profileImg}
               alt="Ram Kumar"
               className="w-60 h-60 object-cover shadow-lg rounded-full"
             />
