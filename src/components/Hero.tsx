@@ -15,11 +15,13 @@ const Hero = () => {
         <div className="text-center space-y-6 animate-fade-in">
           {/* Profile image (square) - place public/profile.jpg */}
           <div className="flex justify-center">
-            <img
-              src={profileImg}
-              alt="Ram Kumar"
-              className="w-60 h-60 object-cover shadow-lg rounded-full"
-            />
+            <div className="w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg">
+              <img
+                src={profileImg}
+                alt="Ram Kumar"
+                className="w-full h-full object-cover block"
+              />
+            </div>
           </div>
 
           <div className="space-y-2">

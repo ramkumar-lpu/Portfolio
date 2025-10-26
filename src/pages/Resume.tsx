@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
+import resumePdf from "./resume.pdf";
 
 const Resume = () => {
 	return (
@@ -11,15 +12,15 @@ const Resume = () => {
 
 				<div className="flex flex-wrap gap-4 mb-6">
 					<Button asChild>
-						<a href="./src/pages/resume.pdf" target="_blank" rel="noopener noreferrer">Open / Download PDF</a>
+						<a href={resumePdf} target="_blank" rel="noopener noreferrer">Open / Download PDF</a>
 					</Button>
 					<Button asChild variant="outline">
-						<a href="./src/pages/resume.pdf" download>Download</a>
+						<a href={resumePdf} download>Download</a>
 					</Button>
 				</div>
 
 				<div className="w-full h-[80vh] border rounded-md overflow-hidden">
-					<iframe src="./src/pages/resume.pdf" title="Resume" className="w-full h-full" />
+					<iframe src={resumePdf} title="Resume" className="w-full h-full" />
 				</div>
 			</div>
 		</div>
