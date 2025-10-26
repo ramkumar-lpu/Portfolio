@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import profileImg from "@/components/profile.jpg";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,7 +34,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <a href="#home" className="flex items-center">
             <img
-              src="./src/components/profile.jpg"
+              src={profileImg}
               alt="Profile"
               title="Profile"
               className="w-15 h-15 md:w-12 md:h-12 rounded-full object-cover border-2 border-primary"
