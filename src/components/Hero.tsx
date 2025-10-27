@@ -5,17 +5,17 @@ import profileImg from "@/components/profile.jpg";
 const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Animated Background Elements */}
+      {/* Animated Background Elements - hide on small screens to avoid overlap */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
+        <div className="hidden md:block absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" />
+        <div className="hidden md:block absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center space-y-6 animate-fade-in">
-          {/* Profile image (square) - place public/profile.jpg */}
-          <div className="flex justify-center">
-            <div className="w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg">
+          {/* Profile image (circular) - hidden on small screens */}
+          <div className="hidden md:flex justify-center">
+            <div className="rounded-full overflow-hidden shadow-lg ring-2 ring-primary/30 w-[45vw] h-[45vw] max-w-[200px] max-h-[200px]">
               <img
                 src={profileImg}
                 alt="Ram Kumar"
