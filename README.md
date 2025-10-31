@@ -23,29 +23,6 @@ cd "C:\Users\ramku\Downloads\ramstack-showcase-main\ramstack-showcase-main"
 npm install
 ```
 
-2. Install server deps (run in `server` folder):
-
-```powershell
-cd server
-npm install
-```
-
-3. Create server `.env` from the provided example and fill values:
-
-```powershell
-cd server
-copy .env.example .env
-# Then edit .env and set SMTP_HOST, SMTP_USER, SMTP_PASS, TO_EMAIL
-```
-
-4. Start the backend server (in one terminal):
-
-```powershell
-cd server
-node index.js
-# or from repo root: npm run start:server
-```
-
 5. Start the frontend (in another terminal):
 
 ```powershell
@@ -57,17 +34,14 @@ npm run dev
 
 ## How it works
 - The Contact form posts JSON to `VITE_BACKEND_URL` (defaults to `http://localhost:4000/api/send`).
-- The backend uses `nodemailer` and the SMTP credentials you supplied to send the email to `TO_EMAIL`.
+- The backend uses `email.js you supplied to send the email to `TO_EMAIL`.
 - If the backend fails to send for any reason, the frontend falls back to opening the visitor's mail client via a `mailto:` link so the message can still be sent manually.
 
 ## Environment variables (server `.env`)
-- SMTP_HOST — SMTP server hostname (e.g., `smtp.sendgrid.net`)
-- SMTP_PORT — SMTP port (587 for STARTTLS)
-- SMTP_USER — SMTP username (often an email)
-- SMTP_PASS — SMTP password or API key
-- TO_EMAIL — the destination email where messages should be sent
-- PORT — optional server port (defaults to 4000)
-- VITE_BACKEND_URL — optional override for the frontend to call the backend API
+from the email.js website ..........
+VITE_EMAILJS_SERVICE_ID=your service id 
+VITE_EMAILJS_TEMPLATE_ID=your_Template_ID
+VITE_EMAILJS_PUBLIC_KEY=Your_public_KEy
 
 ## Security & production notes
 - Keep SMTP credentials secret and inject them via environment variables on your host (do not commit `.env` to version control).
@@ -80,21 +54,14 @@ npm run dev
 
 If you want, I can also add a single `dev` script that runs frontend and backend concurrently (requires adding `concurrently` or similar). Tell me if you'd like that.
 
-# Welcome to your Lovable project
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/92d406cc-6805-42eb-82be-6e4560a585ff
+**URL**: ramsmain.vercel.app
 
 ## How can I edit this code?
 
 There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/92d406cc-6805-42eb-82be-6e4560a585ff) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
@@ -139,15 +106,3 @@ npm run dev
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/92d406cc-6805-42eb-82be-6e4560a585ff) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
->>>>>>> c2c6e5c (ready for vercel)
