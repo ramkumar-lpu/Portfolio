@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # Portfolio
 my personal web
-# Ramstack Showcase — Local setup
+# Rams Portfolio — Local setup
 
 This repository includes a Vite + React frontend and a small Node/Express backend used to send contact-form emails via SMTP (nodemailer).
 
