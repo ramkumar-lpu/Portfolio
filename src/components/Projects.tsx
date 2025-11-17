@@ -54,53 +54,59 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 px-4">
+    <section id="projects" className="py-16 sm:py-20 px-3 sm:px-6 lg:px-8"> {/* ✅ adjusted responsive padding */}
       <div className="container mx-auto">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+        <div className="text-center mb-10 sm:mb-12 animate-fade-in"> {/* ✅ smaller margin on mobile */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"> {/* ✅ responsive heading sizes */}
             My <span className="gradient-text">Projects</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-2"> {/* ✅ text size & padding for smaller screens */}
             Here are some of my recent projects that showcase my skills
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"> {/* ✅ responsive grid (1/2/3 columns) */}
           {projects.map((project, index) => (
             <Card
               key={index}
-              className="overflow-hidden glass-effect group hover:border-primary/50 transition-all duration-300 animate-fade-in"
+              className="overflow-hidden glass-effect group hover:border-primary/50 transition-all duration-300 animate-fade-in flex flex-col" // ✅ ensures consistent card height on all devices
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative overflow-hidden aspect-video">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" // ✅ slight scale reduction for mobile smoothness
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-xl font-semibold">{project.title}</h3>
+
+              <div className="p-5 sm:p-6 flex flex-col flex-grow"> {/* ✅ adjusted padding for small screens */}
+                <div className="flex items-center justify-between gap-3 mb-3"> {/* ✅ spacing fix for smaller view */}
+                  <h3 className="text-lg sm:text-xl font-semibold leading-snug">{project.title}</h3> {/* ✅ title font responsive */}
                   {project.status && (
-                    <span className="text-xs px-2 py-1 rounded-full bg-yellow-100 text-yellow-800">
+                    <span className="text-xs px-2 py-1 rounded-full bg-yellow-100 text-yellow-800 whitespace-nowrap"> {/* ✅ prevents wrapping on small screens */}
                       {project.status}
                     </span>
                   )}
                 </div>
-                <p className="text-muted-foreground mb-4">{project.description}</p>
+
+                <p className="text-sm sm:text-base text-muted-foreground mb-4 flex-grow"> {/* ✅ flexible description spacing */}
+                  {project.description}
+                </p>
+
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
+                      className="text-xs sm:text-sm px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20" // ✅ adjusted text size for tags
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-                <div className="flex gap-2">
+
+                <div className="flex flex-col sm:flex-row gap-2 mt-auto"> {/* ✅ buttons stack vertically on mobile */}
                   {project.codeUrl ? (
                     <Button asChild variant="outline" size="sm" className="flex-1">
                       <a href={project.codeUrl} target="_blank" rel="noopener noreferrer">
