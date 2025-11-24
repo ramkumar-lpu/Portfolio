@@ -14,12 +14,6 @@ const Contact = () => {
       link: "mailto:ramkumar9219447537@gmail.com",
     },
     {
-      icon: <Phone className="w-5 h-5" />,
-      label: "Phone",
-      value: "+91 9219447537",
-      link: "tel:+919219447537",
-    },
-    {
       icon: <MapPin className="w-5 h-5" />,
       label: "Location",
       value: "India",
