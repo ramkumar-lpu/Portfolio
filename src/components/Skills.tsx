@@ -22,6 +22,7 @@ const Skills = () => {
       "Jquery": "📜",
       "Bootstrap": "👢",
       "Redux": "🗂️",
+      "Figma": "🎛️",
       
       // Backend
       "Node.js": "🟢",
@@ -66,6 +67,7 @@ const Skills = () => {
         { name: "Jquery", level: 75, color: "#0769AD" },
         { name: "Bootstrap", level: 70, color: "#7952B3" },
         { name: "Redux", level: 75, color: "#764ABC" },
+         { name: "Figma", level: 80, color: "#F24E1E" },
       ]
     },
     Backend: {
