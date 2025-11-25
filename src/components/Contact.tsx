@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Mail, MapPin, Github, Linkedin } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin,Twitter } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toast as sonnerToast } from "@/components/ui/sonner";
@@ -10,13 +10,19 @@ const Contact = () => {
     {
       icon: <Mail className="w-5 h-5" />,
       label: "Email",
-      value: "ramkumar9219447537@gmail.com",
-      link: "mailto:ramkumar9219447537@gmail.com",
+      value: "ramkkumar977@gmail.com",
+      link: "mailto:ramkkumar977@gmail.com",
     },
     {
       icon: <MapPin className="w-5 h-5" />,
       label: "Location",
       value: "India",
+    },
+    {
+      icon: <Twitter className="w-5 h-5" />,
+      label: "Twitter",
+      value: "Ramkuma623422609",
+      link: "https://x.com/Ramkuma62342260",
     },
   ];
 
