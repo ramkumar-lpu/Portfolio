@@ -74,7 +74,7 @@ const Navbar = () => {
               />
             </div>
             <span className="hidden sm:inline text-lg font-semibold text-foreground/90 group-hover:text-primary transition-all duration-300 transform group-hover:translate-x-1">
-              Shreya Tripathi
+            Ram kumar
             </span>
           </a>
 
